@@ -3,9 +3,13 @@
 
   export let data: PageData;
 
-  let film = "American Gangsta";
+  import { FilmStore } from "../../film-store";
 </script>
 
-<h1 class="text-secondary-600 font-semibold text-3xl sm:text-4xl md:text-5xl">
-  {film}
-</h1>
+<ul>
+  {#each $FilmStore as film}
+    <li>
+      <a href="films/{film.id}">{film.name}</a>
+    </li>
+  {/each}
+</ul>
