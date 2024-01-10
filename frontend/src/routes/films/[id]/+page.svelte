@@ -1,8 +1,7 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
   import { FilmStore } from "../../../film-store";
 
-  export let data: PageData;
+  export let data;
   let film = $FilmStore.find((film) => film.id == Number(data.id));
   console.log(film);
 </script>
