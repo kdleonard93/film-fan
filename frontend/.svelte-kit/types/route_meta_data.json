@@ -1,0 +1,8 @@
+{
+	"/": [],
+	"/films": [],
+	"/films/add": [],
+	"/films/[id]": [
+		"src/routes/films/[id]/+page.ts"
+	]
+}
