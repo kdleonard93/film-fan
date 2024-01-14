@@ -1,9 +1,15 @@
 from django.urls import path
-from films.views import FilmListAPIView
-from films.views import FilmDetailAPIView
+from films.views import FilmViewSet
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-    # URL to get the films will be /api/films
-    path('films/', FilmListAPIView.as_view()),
-    path('films/<int:pk>/', FilmDetailAPIView.as_view())
-]
+
+router = DefaultRouter()
+router.register('films', FilmViewSet, basename='films')
+urlpatterns = router.urls
+
+
+# urlpatterns = [
+#     # URL to get the films will be /api/films
+#     path('films/', FilmListAPIView.as_view()),
+#     path('films/<int:pk>/', FilmDetailAPIView.as_view())
+# ]
