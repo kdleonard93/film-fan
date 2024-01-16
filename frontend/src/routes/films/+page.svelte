@@ -1,8 +1,11 @@
 <script lang="ts">
   export let data;
-  import { goto } from "$app/navigation";
   import { FilmStore } from "../../film-store";
   import { onMount } from "svelte";
+  import { getModalStore } from "@skeletonlabs/skeleton";
+  import type { ModalSettings } from "@skeletonlabs/skeleton";
+
+  const modalStore = getModalStore();
 
   onMount(async function () {
     if (!$FilmStore.length) {
@@ -13,10 +16,31 @@
     }
   });
 
-  // let handleClick = () => {
-  //   goto("/films/add/");
-  // };
+  let handleDelete = (id: number) => {
+    const modal: ModalSettings = {
+      type: "confirm",
+      title: "Please Confirm",
+      body: "Are you sure you want to delete this film?",
+      response: (isConfirmed: boolean) => {
+        if (isConfirmed) {
+          const endpoint = `http://localhost:8000/api/films/${id}`;
+          fetch(endpoint, { method: "DELETE" }).then((response) => {
+            if (response.status == 204) {
+              FilmStore.update((prev) => prev.filter((film) => film.id != id));
+            }
+          });
+        }
+      },
+    };
+    modalStore.trigger(modal);
+  };
 </script>
+
+<div class="container h-full mx-auto flex justify-center items-center">
+  <div class="space-y-5">
+    <h2 class="mb-4 h2">Film List</h2>
+  </div>
+</div>
 
 <div class="flex justify-center my-4">
   <div class="flex flex-wrap justify-center -mx-4">
@@ -46,6 +70,10 @@
             <a
               class="btn variant-filled-primary p-2 m-3 font-semibold"
               href="films/{film.id}">Details</a
+            >
+            <button
+              class="btn variant-filled-error p-2 m-3 font-semibold"
+              on:click={() => handleDelete(film.id)}>Delete</button
             >
           </div>
         </div>

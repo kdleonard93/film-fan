@@ -3,6 +3,8 @@ from films.models import Film
 
 
 class FilmSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(required=False)
+
     class Meta:
         model = Film
         fields = ['id', 'name', 'release_year',
