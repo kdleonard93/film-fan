@@ -1,14 +1,22 @@
 <script lang="ts">
   export let data;
   import { goto } from "$app/navigation";
-  import { type Film, FilmStore } from "../../../film-store";
+  import { type Film, FilmStore } from "../../../../film-store";
   import { FileButton } from "@skeletonlabs/skeleton";
+  import { onMount } from "svelte";
 
   let name: string = "";
   let director: string = "";
   let release_year: string = "";
   let description: string = "";
   let imageFile: File | null = null;
+  let film: Film | null = null;
+  let id: number;
+
+  // Reactive statement to fetch film details when 'data.id' changes
+  $: if (data && data.id) {
+    fetchFilmDetails();
+  }
 
   const handleFileChange = (event: Event) => {
     const input = event.target as HTMLInputElement;
@@ -18,7 +26,11 @@
   };
 
   let handleSubmit = () => {
-    const endpoint = "http://localhost:8000/api/films/";
+    if (!film) {
+      console.error("No film data available");
+      return;
+    }
+    const endpoint = `http://localhost:8000/api/films/${id}/`;
     let data = new FormData();
     data.append("name", name);
     data.append("director", director);
@@ -28,14 +40,41 @@
       data.append("image", imageFile);
     }
 
-    fetch(endpoint, { method: "POST", body: data })
+    fetch(endpoint, { method: "PUT", body: data })
       .then((response) => response.json())
       .then((data) => {
-        FilmStore.update((prev) => [...prev, data]);
+        FilmStore.update((prev) => {
+          let updatedFilms = $FilmStore.slice();
+          let index = updatedFilms.findIndex((film) => film.id == data.id);
+          updatedFilms[index] = data;
+          return updatedFilms;
+        });
       });
 
     goto("/films/");
   };
+  async function fetchFilmDetails() {
+    id = Number(data.id);
+    if ($FilmStore.length) {
+      const foundFilm = $FilmStore.find((f) => f.id == Number(data.id));
+      film = foundFilm !== undefined ? foundFilm : null;
+    } else {
+      const endpoint = `http://localhost:8000/api/films/${data.id}/`;
+      let response = await fetch(endpoint);
+      if (response.status == 200) {
+        film = await response.json();
+      } else {
+        film = null;
+      }
+    }
+    if (film) {
+      name = film.name || "";
+      director = film.director || "";
+      release_year = film.release_year ? film.release_year.toString() : "";
+      description = film.description || "";
+    }
+  }
+  onMount(fetchFilmDetails);
 </script>
 
 <div class="flex justify-center my-4">

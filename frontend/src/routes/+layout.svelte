@@ -3,12 +3,15 @@
   import "../app.postcss";
   import { page } from "$app/stores";
   import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton";
+  import { initializeStores } from "@skeletonlabs/skeleton";
+  import { Modal } from "@skeletonlabs/skeleton";
 
   let tabs = [
     { name: "Home", link: "/" },
     { name: "Films", link: "/films" },
     { name: "Add New Film", link: "/films/add" },
   ];
+  initializeStores();
 </script>
 
 <header
@@ -31,3 +34,5 @@
 </header>
 
 <slot />
+
+<Modal />

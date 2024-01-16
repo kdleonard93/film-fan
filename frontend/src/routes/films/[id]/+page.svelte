@@ -38,6 +38,12 @@
         <span class="font-semibold">Directed by:</span> <i>{film.director}</i>
       </p>
       <p class="mb-2">{film.description}</p>
+
+      <a
+        href="/films/{film.id}/update"
+        class="btn variant-filled-secondary pb-2 mb-3 mt-2 font-semibold"
+        >Update</a
+      >
     </div>
   {:else}
     <div class="p-4">

@@ -4,5 +4,8 @@
 	"/films/add": [],
 	"/films/[id]": [
 		"src/routes/films/[id]/+page.ts"
+	],
+	"/films/[id]/update": [
+		"src/routes/films/[id]/update/+page.ts"
 	]
 }
