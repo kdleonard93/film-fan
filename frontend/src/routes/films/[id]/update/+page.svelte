@@ -83,7 +83,7 @@
     on:submit|preventDefault={handleSubmit}
   >
     <h3 class="font-semibold text-2xl sm:text-3xl md:text-4xl mb-2">
-      Add New Film
+      Update Film
     </h3>
     <label class="label block font-bold mb-2">
       <span>Name</span>
