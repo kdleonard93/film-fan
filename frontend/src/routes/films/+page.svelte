@@ -7,6 +7,14 @@
 
   const modalStore = getModalStore();
 
+  let tags = [];
+
+  let setTags = () => {
+    let tagSet = new Set();
+    $FilmStore.map((film) => film.tags.forEach((tag) => tagSet.add(tag)));
+    tags = Array.from(tagSet);
+  };
+
   onMount(async function () {
     if (!$FilmStore.length) {
       const endpoint = "http://localhost:8000/api/films/";
@@ -14,6 +22,7 @@
       const data = await response.json();
       FilmStore.set(data);
     }
+    setTags();
   });
 
   let handleDelete = (id: number) => {

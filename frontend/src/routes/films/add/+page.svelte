@@ -9,6 +9,7 @@
   let release_year: string = "";
   let description: string = "";
   let imageFile: File | null = null;
+  let tags: string = "";
 
   const handleFileChange = (event: Event) => {
     const input = event.target as HTMLInputElement;
