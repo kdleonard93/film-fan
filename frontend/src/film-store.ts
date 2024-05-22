@@ -1,6 +1,13 @@
-import { writable } from 'svelte/store';
-	
-export const FilmStore = writable([
-    { id: 1, name: "American Gangsta", releaseYear: 2007, director: "Ridley Scott" },
-    { id: 2, name: "Fritz the Cat", releaseYear: 1972, director: "	Ralph Bakshi" },
-])
+import { writable } from "svelte/store";
+
+export interface Film {
+  id: number;
+  name: string;
+  director: string;
+  description: string;
+  release_year: number | null; // Using release_year to match your JSON and model
+  image: string;
+  tags: string[];
+}
+
+export const FilmStore = writable<Film[]>([]);

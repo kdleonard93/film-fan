@@ -3,12 +3,15 @@
   import "../app.postcss";
   import { page } from "$app/stores";
   import { TabGroup, Tab, TabAnchor } from "@skeletonlabs/skeleton";
+  import { initializeStores } from "@skeletonlabs/skeleton";
+  import { Modal } from "@skeletonlabs/skeleton";
 
   let tabs = [
     { name: "Home", link: "/" },
     { name: "Films", link: "/films" },
     { name: "Add New Film", link: "/films/add" },
   ];
+  initializeStores();
 </script>
 
 <header
@@ -17,7 +20,7 @@
       ? "py-4 bg-secondary-400 border border-slate-900"
       : "py-6 bg-transparent border-transparent")}
 >
-  <h1 class="font-medium">Fanflix 🎞️</h1>
+  <h1 class="font-medium">Fan Fan 🎞️</h1>
   <TabGroup
     justify="justify-center"
     class="flex items-center gap-4 border-none"
@@ -31,3 +34,5 @@
 </header>
 
 <slot />
+
+<Modal />
