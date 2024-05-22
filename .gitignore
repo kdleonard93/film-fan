@@ -60,6 +60,7 @@ cover/
 node_modules
 /build
 /.svelte-kit
+.svelte-kit
 /package
 .env.*
 !.env.example

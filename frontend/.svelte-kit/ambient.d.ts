@@ -30,6 +30,7 @@ declare module '$env/static/private' {
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
 	export const INIT_CWD: string;
+	export const WARP_HONOR_PS1: string;
 	export const TERM: string;
 	export const SHELL: string;
 	export const HOMEBREW_REPOSITORY: string;
@@ -51,6 +52,7 @@ declare module '$env/static/private' {
 	export const npm_package_json: string;
 	export const npm_config_engine_strict: string;
 	export const _: string;
+	export const LaunchInstanceID: string;
 	export const npm_config_userconfig: string;
 	export const npm_config_init_module: string;
 	export const __CFBundleIdentifier: string;
@@ -76,8 +78,10 @@ declare module '$env/static/private' {
 	export const npm_config_user_agent: string;
 	export const INFOPATH: string;
 	export const HOMEBREW_CELLAR: string;
+	export const WARP_COMBINED_PROMPT_COMMAND_GRID: string;
 	export const CONDA_CHANGEPS1: string;
 	export const DATABASE_URL: string;
+	export const SECURITYSESSIONID: string;
 	export const npm_node_execpath: string;
 	export const npm_config_prefix: string;
 	export const COLORTERM: string;
@@ -117,6 +121,7 @@ declare module '$env/dynamic/private' {
 		TERM_PROGRAM: string;
 		NODE: string;
 		INIT_CWD: string;
+		WARP_HONOR_PS1: string;
 		TERM: string;
 		SHELL: string;
 		HOMEBREW_REPOSITORY: string;
@@ -138,6 +143,7 @@ declare module '$env/dynamic/private' {
 		npm_package_json: string;
 		npm_config_engine_strict: string;
 		_: string;
+		LaunchInstanceID: string;
 		npm_config_userconfig: string;
 		npm_config_init_module: string;
 		__CFBundleIdentifier: string;
@@ -163,8 +169,10 @@ declare module '$env/dynamic/private' {
 		npm_config_user_agent: string;
 		INFOPATH: string;
 		HOMEBREW_CELLAR: string;
+		WARP_COMBINED_PROMPT_COMMAND_GRID: string;
 		CONDA_CHANGEPS1: string;
 		DATABASE_URL: string;
+		SECURITYSESSIONID: string;
 		npm_node_execpath: string;
 		npm_config_prefix: string;
 		COLORTERM: string;
