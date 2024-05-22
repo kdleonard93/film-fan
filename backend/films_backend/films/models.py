@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import datetime
+from taggit.managers import TaggableManager
 
 
 class Film(models.Model):
@@ -14,6 +15,7 @@ class Film(models.Model):
     description = models.TextField(max_length=356)
     director = models.CharField(max_length=128)
     image = models.ImageField(upload_to='images/')
+    tags = TaggableManager()
 
     def __str__(self):
         return self.name

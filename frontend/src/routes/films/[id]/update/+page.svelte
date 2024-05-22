@@ -12,6 +12,7 @@
   let imageFile: File | null = null;
   let film: Film | null = null;
   let id: number;
+  let tags: string = "";
 
   // Reactive statement to fetch film details when 'data.id' changes
   $: if (data && data.id) {
